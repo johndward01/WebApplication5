@@ -13,7 +13,7 @@ public class Aviation : Controller
         var url = "http://api.aviationstack.com/v1/flights?access_key=14e0430e92634dc857caa1f837598e0d";
         var response = client.GetStringAsync(url).Result;
         var step1 = JObject.Parse(response);
-        root.flight_date = step1["data"][0]["flight_date"].ToString();
+        var data = step1["data"].ToArray();
         root.flight_status = step1["data"][0]["flight_status"].ToString();
         return View(root);
     }
